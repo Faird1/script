@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# ================================
+# 1. Clean old manifests
+# ================================
+echo '>>> Cleaning old data'
+rm -rf .repo/local_manifests
+rm -rf .repo/manifests .repo/manifest.xml
+rm -rf device/xiaomi/ingres 
+rm -rf device/xiaomi/sm8450-common
+rm -rf kernel/xiaomi/sm8450
+rm -rf vendor/xiaomi/ingres 
+rm -rf vendor/xiaomi/sm8450-common
+rm -rf out/target/product/ingres
+
+# ================================
+# 2. Initialize Repo (Infinity-X Android 16)
+# ================================
+echo '>>> Initializing Infinity-X repo'
+repo init --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 16 -g default,-mips,-darwin,-notdefault
+
+# ================================
+# 3. Clone local manifests
+# ================================
+echo '>>> Cloning local manifests'
+git clone https://github.com/Faird1/infinityx-local-manifest.git --depth 1 .repo/local_manifests
+
+# ================================
+# 4. Sync sources
+# ================================
+echo '>>> Syncing sources via /opt/crave/resync.sh'
+/opt/crave/resync.sh
+
+# ================================
+# 5. Setup build environment
+# ================================
+echo '>>> Setting up build environment'
+. build/envsetup.sh
+
+export BUILD_USERNAME=faridd
+export BUILD_HOSTNAME=crave
+export TZ=Europe/Oslo
+export USE_CCACHE=1
+
+# ================================
+# 6. Build
+# ================================
+echo '>>> Starting build: infinity_ingres-userdebug'
+
+lunch infinity_ingres-userdebug
+
+echo '>>> Cleaning previous build artifacts'
+make installclean
+
+echo '>>> Building ROM...'
+mka bacon
