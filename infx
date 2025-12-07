@@ -12,6 +12,15 @@ rm -rf kernel/xiaomi/sm8450
 rm -rf vendor/xiaomi/ingres 
 rm -rf vendor/xiaomi/sm8450-common
 rm -rf out/target/product/ingres
+rm -rf kernel/xiaomi/sm8450-modules
+rm -rf kernel/xiaomi/sm8450-devicetrees
+rm -rf packages/apps/GameKeys
+rm -rf device/lineage/sepolicy
+rm -rf external/libevdev
+rm -rf external/rust/android-crates-io/crates/evdev-rs
+rm -rf external/rust/android-crates-io/crates/evdev-sys
+rm -rf hardware/xiaomi
+rm -rf hardware/lineage/interfaces
 
 # ================================
 # 2. Initialize Repo (Infinity-X Android 16)
