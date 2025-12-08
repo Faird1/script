@@ -48,8 +48,6 @@ echo '>>> Setting up build environment'
 export BUILD_USERNAME=faridd
 export BUILD_HOSTNAME=crave
 export TZ=Europe/Oslo
-export USE_CCACHE=1
-export CCACHE_EXEC=$(which ccache)
 
 # ================================
 # 7. Build
