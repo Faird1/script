@@ -37,28 +37,7 @@ git clone https://github.com/Faird1/infinityx-local-manifest.git --depth 1 .repo
 # ================================
 # 4. Sync sources
 # ================================
-echo '>>> Syncing sources'
-repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --prune --optimized-fetch
-
-# Если /opt/crave/resync.sh существует, запустить его тоже
-if [ -f /opt/crave/resync.sh ]; then
-    echo '>>> Running crave resync script'
-    /opt/crave/resync.sh
-fi
-
-# ================================
-# 5. Verify device tree
-# ================================
-echo '>>> Verifying device tree'
-if [ ! -f "device/xiaomi/ingres/AndroidProducts.mk" ]; then
-    echo "ERROR: AndroidProducts.mk not found!"
-    exit 1
-fi
-
-if [ ! -f "device/xiaomi/ingres/infinity_ingres.mk" ]; then
-    echo "ERROR: infinity_ingres.mk not found!"
-    exit 1
-fi
+/opt/crave/resync.sh
 
 # ================================
 # 6. Setup build environment
@@ -74,39 +53,6 @@ export CCACHE_EXEC=$(which ccache)
 
 # ================================
 # 7. Build
-# ================================
-echo '>>> Starting build: infinity_ingres-userdebug'
-
-lunch infinity_ingres-userdebug || {
-    echo "ERROR: lunch failed!"
-    echo "Available products:"
-    lunch
-    exit 1
-}
-
-echo '>>> Cleaning previous build artifacts'
-make installclean
-
-echo '>>> Building ROM...'
-mka bacon# ================================
-# 4. Sync sources
-# ================================
-echo '>>> Syncing sources via /opt/crave/resync.sh'
-/opt/crave/resync.sh
-
-# ================================
-# 5. Setup build environment
-# ================================
-echo '>>> Setting up build environment'
-. build/envsetup.sh
-
-export BUILD_USERNAME=faridd
-export BUILD_HOSTNAME=crave
-export TZ=Europe/Oslo
-export USE_CCACHE=1
-
-# ================================
-# 6. Build
 # ================================
 echo '>>> Starting build: infinity_ingres-userdebug'
 
