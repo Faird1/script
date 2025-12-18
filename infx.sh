@@ -26,8 +26,7 @@ rm -rf hardware/lineage/interfaces
 # 2. Initialize Repo (Infinity-X Android 16)
 # ================================
 echo '>>> Initializing Infinity-X repo'
-repo init --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 16 -g default,-mips,-darwin,-notdefault
-
+repo init -u https://github.com/ProjectInfinity-X/manifest -b 16 --git-lfs
 # ================================
 # 3. Clone local manifests
 # ================================
