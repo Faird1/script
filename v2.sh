@@ -81,6 +81,9 @@ echo -e "${GREEN}[✓]${NC} Cleanup completed\n"
 # ============================================
 echo -e "${CYAN}[2/8] Syncing repository...${NC}"
 
+echo -e "${BLUE}[INFO]${NC} Initializing Infinity-X repo"
+repo init -u https://github.com/ProjectInfinity-X/manifest -b 16 --git-lfs
+
 # Clone local manifests
 echo -e "${BLUE}[INFO]${NC} Cloning local manifests..."
 git clone https://github.com/Faird1/infinityx-local-manifest.git --depth 1 .repo/local_manifests
