@@ -83,7 +83,7 @@ echo -e "${CYAN}[2/8] Syncing repository...${NC}"
 
 # Clone local manifests
 echo -e "${BLUE}[INFO]${NC} Cloning local manifests..."
-git clone https://github.com/Faird1/local_manifests_ingres -b infinityx16 .repo/local_manifests
+git clone https://github.com/Faird1/infinityx-local-manifest -b infinityx16 .repo/local_manifests
 
 # Repo sync
 echo -e "${BLUE}[INFO]${NC} Running repo sync..."
