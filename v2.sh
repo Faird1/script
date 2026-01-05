@@ -86,7 +86,7 @@ repo init -u https://github.com/ProjectInfinity-X/manifest -b 16 --git-lfs
 
 # Clone local manifests
 echo -e "${BLUE}[INFO]${NC} Cloning local manifests..."
-git clone https://github.com/Faird1/infinityx-local-manifest.git --depth 1 .repo/local_manifests
+git clone https://raw.githubusercontent.com/Faird1/infinityx-local-manifest/refs/heads/main/local_manifest.xml --depth 1 .repo/local_manifests
 
 # Repo sync
 echo -e "${BLUE}[INFO]${NC} Running repo sync..."
